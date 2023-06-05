@@ -1,0 +1,23 @@
+.dialog {
+  text-align: center;
+  &__title {
+    h1 {
+      color: rgba(245, 99, 8, 0.933);
+    }
+  }
+  &thanks-text {
+    font-size: 15px;
+  }
+
+  &__button-group {
+    margin-bottom: 30px;
+    Button {
+      background-color: orangered;
+      color: whitesmoke;
+      padding: 10px 25px;
+    }
+    Button:hover {
+      background-color: rgb(118, 117, 116);
+    }
+  }
+}

@@ -1,0 +1,18 @@
+.teamCard {
+  background-color: #ffa500;
+  padding: 30px;
+  width: calc(100% / 6 - 5px);
+  height: calc(100% / 6 - 5px);
+  margin-left: 5px;
+  display: inline-block;
+
+  &Title {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+
+    h1 {
+      margin-bottom: 10px;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.btn {
+    padding: 12px;
+    // background: map-get($color, primary);
+    border: none;
+    border-radius: 5px;
+    min-width: 100px;
+    cursor : pointer;
+    // @each $color, $val in $colors {
+    //     &.btn-#{$color} {
+    //         background: $val;
+    //     }
+    // }
+    &.block {
+        width: 100%;
+
+    }
+    &.sm {
+        padding: 8px;
+    }
+}
+input:focus{
+    outline: none;
+}

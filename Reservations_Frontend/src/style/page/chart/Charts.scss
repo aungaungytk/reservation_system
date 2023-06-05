@@ -1,0 +1,16 @@
+.charts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.width-50 {
+  width: calc(100% / 2) - 5%;
+}
+.align-center {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+.mt {
+  margin-top: 30px;
+}

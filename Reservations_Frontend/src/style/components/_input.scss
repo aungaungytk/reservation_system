@@ -1,0 +1,11 @@
+input, textarea {
+    padding: 12px;
+    border : 0;
+    // background: map-get($colors, 'light');
+    width: 100%;
+}
+
+
+textarea {
+    height: 50px;
+}

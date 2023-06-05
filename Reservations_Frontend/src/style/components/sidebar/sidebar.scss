@@ -1,0 +1,120 @@
+.sidebar {
+    width: 15%;
+    border-right: 1px solid #f6eaea;
+    min-height: 100vh;
+    background-color: #f8f6f5;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  
+    .top {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .logo{
+        .img{
+            position: fixed;
+        }
+      }
+    }
+  
+    hr {
+      height: 0;
+      border: 1.5px solid rgb(230, 227, 227);
+    }
+  
+    .center {
+      padding-left: 10px;
+      
+  
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        
+  
+        .title {
+          font-size: 15px;
+          font-weight: bold;
+          color: orange;
+          margin-top: 15px;
+          margin-bottom: 15px;
+        }
+  
+        li {
+          display: flex;
+          align-items: center;
+          padding: 5px;
+          cursor: pointer;
+          margin-right: 5px;        
+  
+          &:hover {
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+            border-radius: 10px;
+          }
+  
+          .icon {
+            font-size: 20px;
+            color: #3434cb;
+            margin-bottom: 10px;
+          }
+  
+          span{
+            // background-color: #c5c2c2;
+              font-size: 15px;
+              font-weight: 600;
+              color: #888;
+              margin-left: 10px;
+              margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  
+    .bottom{
+        display: flex;
+        align-items: center;
+        margin: 10px;
+  
+        .colorOption{
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            border: 1px solid #7451f8;
+            cursor: pointer;
+            margin: 5px;
+  
+            &:nth-child(1){
+                background-color: whitesmoke;
+            }
+            &:nth-child(2){
+                background-color: #333;
+            }
+            &:nth-child(3){
+                background-color: darkblue;
+            }
+        }
+    }
+  }
+  h1 {
+    margin: 30px 0px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 700;
+    color: grey;
+  }
+  .back-button{
+    margin-left: 10px;
+    padding: 10px 30px;
+    background: #2196f3;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+    &:hover{
+          background: #0d47a1;
+
+    }
+  }
+   

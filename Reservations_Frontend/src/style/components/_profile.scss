@@ -1,0 +1,127 @@
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #f6d365;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right bottom,
+    rgba(246, 211, 101, 1),
+    rgba(253, 160, 133, 1)
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(
+    to right bottom,
+    rgba(246, 211, 101, 1),
+    rgba(253, 160, 133, 1)
+  );
+}
+
+.profile-card {
+  height: 350px;
+  width: 600px;
+  background-color: yellowgreen;
+  margin: 0 auto;
+  margin-top: 30px;
+  display: flex;
+  box-shadow: 3px 3px 10px gray;
+
+  .left-col {
+    width: calc(100% / 2);
+    background: linear-gradient(
+      to right bottom,
+      rgb(250, 214, 94),
+      rgba(253, 160, 133, 1)
+    );
+  }
+
+  .profile-avartar {
+    width: 80px;
+    margin-top: 40px;
+    margin-left: calc(100% / 3.5);
+  }
+
+  .profile-name {
+    margin-top: 50px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 5px black;
+  }
+
+  .profile-team {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 5px black;
+  }
+
+  .btn-wrapper {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  Button {
+    color: white;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 12px;
+    text-shadow: 2px 2px 5px black;
+  }
+
+  .right-col {
+    margin-top: 0;
+    width: 100%;
+    background-color: white;
+  }
+
+  .profile-information {
+    padding: 10px;
+    margin-left: 20px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .profile-emp-group,
+  .profile-phone-group,
+  .profile-email-group {
+    display: flex;
+  }
+
+  .profile-value-email,
+  .profile-value-phone {
+    margin-top: 12px;
+    margin-left: 20px;
+    color: gray;
+    font-weight: bold;
+  }
+
+  .profile-value-id {
+    padding: 10px;
+    margin-left: 20px;
+    margin-top: 30px;
+    color: gray;
+    font-weight: bold;
+  }
+
+  .profile-emp-id {
+    margin-top: 30px;
+  }
+
+  .profile-emp-id,
+  .profile-email,
+  .profile-phone {
+    padding: 10px;
+    margin-left: 20px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}

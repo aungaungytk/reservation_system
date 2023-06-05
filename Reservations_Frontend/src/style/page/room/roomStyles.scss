@@ -1,0 +1,77 @@
+.reservation-container {
+  height: 100vh;
+  .padding {
+    padding: 20px 15px;
+  }
+  h1 {
+    //color: #fa7c0d;
+    color: gray;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 700;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+.date {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0px 10px 30px 10px;
+  h3 {
+    text-align: center;
+    display: block;
+    padding: 10px 0;
+  }
+  &__dateFilter {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+  }
+  &__dateFilter input {
+    border: 1px solid gray;
+    width: 150px;
+    height: 35px;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  &__reservationBtn {
+    margin: 0;
+    text-decoration: none;
+    border: 1px solid rgb(202, 199, 199);
+    background-color: rgb(237, 234, 234);
+    box-shadow: 3px 3px 3px rgb(224, 224, 221);
+    border-radius: 2px;
+    font-weight: bold;
+
+    .link-style {
+      padding: 10px 20px;
+      display: block;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      font-weight: normal;
+      color: #204453;
+    }
+  }
+}
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.data-card {
+  margin-right: 20px;
+  width: calc(100% / 2);
+  margin: 30px auto;
+  border: 1px solid gainsboro;
+}
+.userData {
+  margin-top: 60px;
+  &__table {
+    padding: 30px 10px;
+  }
+}
+.reservation-table {
+  padding: 0 10px;
+}

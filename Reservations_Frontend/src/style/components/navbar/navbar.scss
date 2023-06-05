@@ -1,0 +1,42 @@
+.navbar {
+    flex: 6;
+    height: 62px;
+    border-bottom: 3px solid #f7f0f0;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #555;
+    // max-width: 100%;
+  
+    .wrapper {
+      // width: calc(12000px - 200px);
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+  
+        .item {
+          margin-right: 20px;
+          margin-left: 30px;
+
+
+      }
+    }
+  }
+  .scrollableTable {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  
+  .scrollableTable .dataTable {
+    min-width: 500px;
+    max-width: 100%;
+    background-color: #000;
+  }
+  
+  .scrollableTable .dataTable th,
+  .scrollableTable .dataTable td {
+    width: 70px;
+  }
+  
