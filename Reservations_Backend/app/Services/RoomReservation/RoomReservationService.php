@@ -5,9 +5,6 @@ namespace App\Services\RoomReservation;
 use App\Models\Room;
 use App\Models\RoomReservation;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Redirect;
-
-use Illuminate\Support\Facades\Log;
 
 
 class RoomReservationService implements RoomReservationServiceInterface
@@ -26,6 +23,7 @@ class RoomReservationService implements RoomReservationServiceInterface
 
 
         if ($inputDate > $currentDateTime ||  $formattedInput >= $formattedTime) {
+
             if ($data['start_time'] < $data['end_time']) {
                 if ($data['room_id'] != null && isset($data['room_id'])) {
 
@@ -61,13 +59,16 @@ class RoomReservationService implements RoomReservationServiceInterface
     {
         $result = RoomReservation::where('id', $id)->first();
 
-        $inputDate = Carbon::parse($data['date']);
         $currentDateTime = Carbon::now();
-        $currentTime = Carbon::now()->toTimeString();
+        $inputDate = Carbon::parse($data['date']);
+        $inputTime = Carbon::parse($data['start_time']);
+        $currentTime = Carbon::now();
+        $currentTime->setTimezone('Asia/Yangon');
+        $formattedTime = $currentTime->format('H:i:s');
+        $formattedInput = $inputTime->format('H:i:s');
 
 
-        if ($inputDate >= $currentDateTime || $data['start_time'] > $currentTime) {
-
+        if ($inputDate > $currentDateTime ||  $formattedInput >= $formattedTime) {
             $reservations = RoomReservation::all();
             $inputStartTime = $data['start_time'];
             $inputEndTime = $data['end_time'];

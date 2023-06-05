@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
-import Navbar from "../../components/navbar/navbar";
+import Navbar from "../../components/navbar/Navbar";
 import { Sidebar } from "../../components/sidebar/AdminSidebar";
 import axios from "axios";
 import { useAppSelector } from "../../redux/features/Hook";
-import { Card } from '../../components/card/card';
+import { Card } from "../../components/card/card";
 import Charts from "../chart/Charts";
 import debounce from "lodash/debounce";
 import ReactLoading from "react-loading";
-
+import { Link } from "react-router-dom";
 
 export interface roomReservationData {
   date: string;
@@ -46,36 +46,37 @@ export const AdminDashboard: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [roomCountRes, carCountRes, carReserveCountRes, roomReserveCountRes] : any = await Promise.all([
+        const [
+          roomCountRes,
+          carCountRes,
+          carReserveCountRes,
+          roomReserveCountRes,
+        ]: any = await Promise.all([
           getRoomCount(),
           getCarCount(),
           getCarReserveCount(),
-          getRoomReserveCount()
+          getRoomReserveCount(),
         ]);
 
         setroomCount(roomCountRes.data);
         setCarCount(carCountRes.data);
         setCarReserveCount(carReserveCountRes.data);
         setRoomReserveCount(roomReserveCountRes.data);
-        setIsLoading(false); // Set loading status to false once data is fetched
+        setIsLoading(false); 
       } catch (error) {
         console.log(error);
-        setIsLoading(false); // Set loading status to false in case of an error
+        setIsLoading(false); 
       }
     };
 
-    const debouncedFetchData = debounce(fetchData, 500); // Adjust the debounce delay as needed
+    const debouncedFetchData = debounce(fetchData, 500); 
 
     debouncedFetchData();
 
     return () => {
       debouncedFetchData.cancel();
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-
-
 
   const getRoomCount = () => {
     return new Promise((resolve, reject) => {
@@ -150,29 +151,51 @@ export const AdminDashboard: React.FC = () => {
       <Sidebar />
       <div className="homeContainer">
         <Navbar />
-        {isLoading? (
+        {isLoading ? (
           <div style={{ display: "flex", justifyContent: "center" }}>
-          <ReactLoading
-            color={"blue"}
-            type={"spin"}
-            height={"80px"}
-            width={"80px"}
-          />
-        </div>
-        ):(
+            <ReactLoading
+              color={"blue"}
+              type={"spin"}
+              height={"80px"}
+              width={"80px"}
+            />
+          </div>
+        ) : (
           <>
             <div className="dashboard-container" style={{ padding: "5px" }}>
-          <Card title="Total Room" count={roomCount} />
-          <Card title="Total Car" count={carCount} />
-          <Card title="Total Room Reservation" count={roomReserveCount} />
-          <Card title="Total Car Reservation" count={carReserveCount} />
-        </div>
-        <div style={{  marginBottom:"50px"  }}>
-          <Charts/>
-        </div>
+              <Link
+                to={`/${authRedux.role}-dashboard/room-creation`}
+                style={{ textDecoration: "none", color: "gray" }}
+              >
+                <Card title="Total Room" count={roomCount} />
+              </Link>
+
+              <Link
+                to={`/${authRedux.role}-dashboard/car-creation`}
+                style={{ textDecoration: "none", color: "gray" }}
+              >
+                <Card title="Total Car" count={carCount} />
+              </Link>
+
+              <Link
+                to={`/${authRedux.role}-dashboard/room-reservation-report`}
+                style={{ textDecoration: "none", color: "gray" }}
+              >
+                <Card title="Total Room Reservation" count={roomReserveCount} />
+              </Link>
+
+              <Link
+                to={`/${authRedux.role}-dashboard/car-reservation-report`}
+                style={{ textDecoration: "none", color: "gray" }}
+              >
+                <Card title="Total Car Reservation" count={carReserveCount} />
+              </Link>
+            </div>
+            <div style={{ marginBottom: "50px" }}>
+              <Charts />
+            </div>
           </>
         )}
-        
       </div>
     </div>
   );

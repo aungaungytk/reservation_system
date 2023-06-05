@@ -16,14 +16,12 @@ const CarPieChart = () => {
 
   useEffect(() => {
     getTeamData()
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .then((response: any) => {
         setTeamData(response.data);
       })
       .catch((error) => {
         console.error(error);
       });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const getTeamData = () => {
     return new Promise((resolve, reject) => {

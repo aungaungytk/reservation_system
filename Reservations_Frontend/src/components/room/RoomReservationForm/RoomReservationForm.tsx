@@ -103,8 +103,7 @@ const RoomReservationForm: React.FC = () => {
           },
         }
       )
-      .then((response) => {
-        console.log(response);
+      .then(() => {
         const successMessage = "Reservation created successfully.";
         navigate(
           `/${
@@ -115,7 +114,6 @@ const RoomReservationForm: React.FC = () => {
         );
       })
       .catch((error) => {
-        console.log(error);
         if (error.response.data.message.endTimeError) {
           setMessage(error.response.data.message.endTimeError);
         }

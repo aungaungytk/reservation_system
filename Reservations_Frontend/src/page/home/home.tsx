@@ -1,7 +1,6 @@
-import Navbar from "../../components/navbar/navbar";
+import Navbar from "../../components/navbar/Navbar";
 import { Sidebar } from "../../components/sidebar/AdminSidebar";
 
-// import React from 'react';
 
 export const Home  = () => {
     return(

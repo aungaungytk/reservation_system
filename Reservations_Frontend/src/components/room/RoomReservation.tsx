@@ -6,6 +6,7 @@ import { useAppSelector } from "../../redux/features/Hook";
 import { Link } from "react-router-dom";
 import DriveFileRenameOutlineTwoToneIcon from "@mui/icons-material/DriveFileRenameOutlineTwoTone";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+
 import {
   Alert,
   Button,
@@ -68,6 +69,25 @@ export const TimeFormatConverter = (time: number) => {
   });
   return twelveHourFormat.format(date);
 };
+export const formattedTime = `${new Date()
+  .getHours()
+  .toString()
+  .padStart(2, "0")}:00:00`;
+
+export const getCurrentDate = (): string => {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+
+export const getFormattedDate = (date: Date): string => {
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
 export const RoomReservation: React.FC = () => {
   const authRedux = useAppSelector((state) => state.auth);
   const authUser = authRedux.user;
@@ -75,8 +95,7 @@ export const RoomReservation: React.FC = () => {
   const [roomData, setRoomData] = useState<RoomData[]>([]);
 
   const [open, setOpen] = useState(false);
-  const [currentTime, setCurrentTime] = useState(new Date());
-  const currentDate = new Date();
+
   const [refresh, setRefresh] = useState(false);
   const [titleError, setTitleError] = useState("");
   const [timeError, setTimeError] = useState("");
@@ -110,15 +129,6 @@ export const RoomReservation: React.FC = () => {
   };
 
   const [inputValues, setInputValues] = useState(initialInputValue);
-
-  const getTimeFormat = (date: string) => {
-    const [hours, minutes, seconds] = date.split(":");
-    const time = new Date();
-    time.setHours(Number(hours));
-    time.setMinutes(Number(minutes));
-    time.setSeconds(Number(seconds));
-    return time;
-  };
 
   useEffect(() => {
     getRoomData();
@@ -188,8 +198,8 @@ export const RoomReservation: React.FC = () => {
 
   const getUserReservationData = async () => {
     try {
-      return new Promise(async (resolve, reject) => {
-        await axios
+      return new Promise( (resolve, reject) => {
+         axios
           .get(
             `http://localhost:8000/api/room_reservation/searchByUserAndDate/${authUser.id}/${searchDate}`,
             {
@@ -262,8 +272,8 @@ export const RoomReservation: React.FC = () => {
           setMessage(error.response.data.message.overlap);
         }
 
-        if (error.response.data.message.dateError) {
-          setMessage(error.response.data.message.dateError);
+        if (error.response.data.message.errorDate) {
+          setMessage(error.response.data.message.errorDate);
         }
         if (error.response.data.message.title) {
           setTitleError(error.response.data.message.title[0]);
@@ -317,35 +327,40 @@ export const RoomReservation: React.FC = () => {
         <>
           <div style={{ display: "flex" }}>
             <Button
-              color="success"
+            variant="contained"
+            color="success"
               onClick={(e: any) => {
                 e.preventDefault();
                 handleEdit(row);
               }}
               disabled={
-                (getTimeFormat(row.start_time.toString()) < currentTime &&
-                  new Date(row.date) <= new Date(currentDate)) ||
-                (getTimeFormat(row.start_time.toString()) > currentTime &&
-                  new Date(row.date) < new Date(currentDate))
+                (new Date(row.date) <= new Date() &&
+                  row.start_time.toString() < formattedTime) ||
+                getCurrentDate() > getFormattedDate(new Date(row.date))
               }
             >
-              <DriveFileRenameOutlineTwoToneIcon fontSize="large"/>
+              <DriveFileRenameOutlineTwoToneIcon
+                sx={{ cursor: "pointer" }}
+                fontSize="large"
+              />
             </Button>
             <Button
-              color="error"
-              sx={{ marginLeft: "5px" }}
+            variant="contained"
+            color="error"
               onClick={(e: any) => {
                 e.preventDefault();
                 handleDelete(row.id);
               }}
               disabled={
-                (getTimeFormat(row.start_time.toString()) < currentTime &&
-                  new Date(row.date) <= new Date(currentDate)) ||
-                (getTimeFormat(row.start_time.toString()) > currentTime &&
-                  new Date(row.date) < new Date(currentDate))
+                (new Date(row.date) <= new Date() &&
+                  row.start_time.toString() < formattedTime) ||
+                getCurrentDate() > getFormattedDate(new Date(row.date))
               }
             >
-              <DeleteForeverIcon fontSize="large"/>
+              <DeleteForeverIcon
+                fontSize="large"
+                sx={{ marginLeft: "5px", cursor: "pointer" }}
+              />
             </Button>
           </div>
         </>
@@ -382,6 +397,7 @@ export const RoomReservation: React.FC = () => {
   };
 
   const [openDelete, setOpenDelete] = useState(false);
+ 
   const handleClose = () => {
     setOpenDelete(false);
   };
@@ -416,7 +432,7 @@ export const RoomReservation: React.FC = () => {
           <div className="date__reservationBtn">
             <Link
               to={`/${authRedux.role}-dashboard/room-reservation/reserve`}
-              className={darkMode ? "dark_reserve_btn" : "link-style"}
+              className={darkMode ? "dark_reserve_btn" : "link_style"}
             >
               Reserve Room
             </Link>
@@ -425,8 +441,8 @@ export const RoomReservation: React.FC = () => {
           <div className="date__dateFilter">
             <label>Data Show By Date : &nbsp;</label>
             <input
-            className={darkMode? "dark_date":""}
               type="date"
+              className={darkMode ? "dark_date" : ""}
               value={searchDate}
               onChange={(e) => setSearchDate(e.target.value)}
             />
@@ -539,7 +555,7 @@ export const RoomReservation: React.FC = () => {
                           value={inputValues.start_time}
                           onChange={handleSelectChange}
                         >
-                          <option value="9:00:00">09:00am</option>
+                          <option value="09:00:00">09:00am</option>
                           <option value="10:00:00">10:00am</option>
                           <option value="11:00:00">11:00am</option>
                           <option value="12:00:00">12:00pm</option>

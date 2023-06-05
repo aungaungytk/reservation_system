@@ -27,6 +27,7 @@ const CarDataTable = () => {
   const [dateError, setDateError] = useState("");
   const [timeError, setTimeError] = useState("");
   const [message, setMessage] = useState("");
+  const {darkMode}= useContext(DarkModeContext);
 
   const navigate = useNavigate();
   const initialInputValue = {
@@ -42,7 +43,6 @@ const CarDataTable = () => {
     approved_by: "",
   };
   const [inputValue, setInputValue] = useState(initialInputValue);
-  const {darkMode} = useContext(DarkModeContext);
   const { data: userCarQuery, isFetching: isCarFetching } =
     useCarListDataQuery();
   useEffect(() => {
@@ -125,6 +125,7 @@ const CarDataTable = () => {
     setTimeError("");
     setDestinationError("");
     setTitleError("");
+    setMessage("");
   };
 
   const sendDataToBackend = () => {
@@ -150,6 +151,7 @@ const CarDataTable = () => {
         }
       )
       .then(() => {
+
         setRefresh(true);
         const successMessage = "Reservation created successfully.";
         navigate(
@@ -162,9 +164,8 @@ const CarDataTable = () => {
       })
       .catch((error) => {
         setOpen(true);
-        console.log(error);
-        if (error.response.data.message.endTimeError) {
-          setMessage(error.response.data.message.endTimeError);
+        if (error.response.data.message.end_time) {
+          setMessage(error.response.data.message.end_time);
         }
         if (error.response.data.message.errorDate) {
           setMessage(error.response.data.message.errorDate);
@@ -200,6 +201,11 @@ const CarDataTable = () => {
   };
 
   const onBackDropClick = () => {
+    setDateError("");
+    setTimeError("");
+    setDestinationError("");
+    setTitleError("");
+    setMessage("");
     setOpen(false);
   };
 

@@ -1,4 +1,4 @@
-import Navbar from "../../components/navbar/navbar";
+import Navbar from "../../components/navbar/Navbar";
 import CarReservationReport from "../../components/report/carReservation";
 import { Sidebar } from "../../components/sidebar/AdminSidebar";
 

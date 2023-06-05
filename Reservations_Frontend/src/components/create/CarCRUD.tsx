@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Dialog, DialogContent } from "@mui/material";
 import { useAppSelector } from "../../redux/features/Hook";
 import { useContext, useEffect, useState } from "react";
@@ -38,31 +36,6 @@ const CarCRUD = () => {
       setRefresh(false);
     }
   }, [userCarQuery, isCarFetching]);
-  // useEffect(() => {
-  //   fetchCarList().then((response: any) => {
-  //     setCarData(response.data);
-  //     setRefresh(false);
-  //   });
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [refresh]);
-
-  // const fetchCarList = () => {
-  //   return new Promise((resolve, reject) => {
-  //     axios
-  //       .get("http://127.0.0.1:8000/api/cars", {
-  //         headers: {
-  //           Authorization: `Bearer ${authRedux.token}`,
-  //         },
-  //       })
-  //       .then((response) => {
-  //         resolve(response.data);
-  //         setRefresh(true);
-  //       })
-  //       .catch((error) => {
-  //         reject(error);
-  //       });
-  //   });
-  // };
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setInputValue((prevData) => ({
@@ -101,7 +74,6 @@ const CarCRUD = () => {
         .then((response) => {
           resolve(response.data);
           setOpen(false);
-          console.log(response.data);
           window.location.reload();
         })
         .catch((error) => {

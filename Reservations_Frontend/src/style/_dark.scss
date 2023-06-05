@@ -29,6 +29,7 @@
 
     .top {
       .logo {
+        //   color: #999;
         background-color: aliceblue;
       }
     }
@@ -49,78 +50,82 @@
     }
   }
 
-    .rdt_Table{
-      .rdt_TableHead *{
-        background-color: #434040;
-        color: #cbc8c8;
-      }
-      .rdt_TableCol{
-        border: 0.1px solid gray;
-      }
-      .rdt_TableRow{
-        background-color: #111;
-        color: gray;
-        border: 0.1px solid gray;
-
-        .rdt_TableCell{
-          border: 0.1px solid gray;
-          .dark_btn{
-            background-color: black;
-            color: gray;
-            border: 1px solid gray;
-          }
-        }
-      }
-      
+  .rdt_Table {
+    .rdt_TableHead * {
+      background-color: #434040;
+      color: #cbc8c8;
     }
-    .rdt_Pagination{
+    .rdt_TableCol {
+      border: 0.1px solid gray;
+    }
+    .rdt_TableRow {
       background-color: #111;
+      color: gray;
+      border: 0.1px solid gray;
+      // border: 0.1px solid #fff;
+
+      .rdt_TableCell {
+        border: 0.1px solid gray;
+        .dark_btn {
+          background-color: black;
+          color: gray;
+          border: 1px solid gray;
+        }
+      }
+    }
+  }
+  .rdt_Pagination {
+    background-color: #111;
+  }
+
+  table {
+    thead {
+      tr {
+        color: gray;
+        border: 1px solid gray;
+        th {
+          background-color: black;
+        }
+      }
     }
 
-        table{
-        thead{
-          tr{
-            color: gray;
-            border: 1px solid gray;
-            th{
-                background-color: black;
-            }
-          }
-        }
-
-        tbody{
-          tr{
-            td{
-              background-color: #111;
-            }
-          }
+    tbody {
+      tr {
+        td {
+          background-color: #111;
         }
       }
-      
-      .dark_date{
-        background-color: gray;
-      }
+    }
+  }
 
-      .dark_btn{
-        background-color: black;
-        color: gray;
-        border: 1px solid gray;
-      }
+  .dark_date {
+    background-color: gray;
+  }
 
-      .dark_reserve_btn{
-        text-decoration: none;
-        padding: 10px 20px;
-        display: block;
-        background-color: #111;
-        border: 1px solid gray;
-        text-decoration: none;
-        font-weight: normal;
-        color: gray;
-      }
+  .dark_btn {
+    background-color: black;
+    color: gray;
+    border: 1px solid gray;
+  }
 
-      .dark_title{
-        font-size: 25px;
-        font-weight: 700;
-        color: #fa7c0d;
-      }
+  .dark_reserve_btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    background-color: #111;
+    border: 1px solid gray;
+    text-decoration: none;
+    font-weight: normal;
+    color: gray;
+  }
+
+  .dark_title {
+    font-size: 25px;
+    font-weight: 700;
+    color: #fa7c0d;
+  }
+
+  .tooltip {
+    background-color: #fa7c0d;
+  }
 }

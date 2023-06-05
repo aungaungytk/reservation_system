@@ -41,7 +41,6 @@ const RoomReservationChart: React.FC = () => {
       "Dec",
     ];
 
-    // Subtract 1 from the monthNumber since JavaScript Date object uses 0-based index for months
     const monthName = monthNames[monthNumber - 1];
 
     return monthName;
@@ -59,7 +58,6 @@ const RoomReservationChart: React.FC = () => {
       const ChartData = updateChartData(extractedData);
       setChartData(ChartData);
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const updateChartData = (formattedData: ReservationCountData[]) => {

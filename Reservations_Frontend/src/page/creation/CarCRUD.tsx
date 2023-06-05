@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import CarCRUD from "../../components/create/CarCRUD";
-import Navbar from "../../components/navbar/navbar";
+import Navbar from "../../components/navbar/Navbar";
 import { Sidebar } from "../../components/sidebar/AdminSidebar";
 import { DarkModeContext } from "../../context/darkModeContext";
 

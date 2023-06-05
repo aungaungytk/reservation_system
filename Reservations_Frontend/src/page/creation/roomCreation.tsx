@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import AdminRoomComponent from "../../components/create/room";
-import Navbar from "../../components/navbar/navbar";
+import Navbar from "../../components/navbar/Navbar";
 import { Sidebar } from "../../components/sidebar/AdminSidebar";
 import { DarkModeContext } from "../../context/darkModeContext";
 

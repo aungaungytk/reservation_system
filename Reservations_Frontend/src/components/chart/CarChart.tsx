@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Chart, registerables } from "chart.js/auto";
-import axios from "axios";
 
 export interface ReservationCountData {
   month: string;
@@ -21,7 +20,7 @@ const BarChart: React.FC<ChartDataProp> = ({ chartData, monthLabels }) => {
 
       if (ctx) {
         if (chartInstance.current) {
-          chartInstance.current.destroy(); // Destroy the previous chart instance
+          chartInstance.current.destroy(); 
         }
 
         chartInstance.current = new Chart(ctx, {
@@ -67,7 +66,6 @@ const BarChart: React.FC<ChartDataProp> = ({ chartData, monthLabels }) => {
               y: {
                 beginAtZero: true,
                 ticks: {
-                  // callback: (value) => ${value} units, // Custom label format
                   stepSize: 3,
                 },
               },

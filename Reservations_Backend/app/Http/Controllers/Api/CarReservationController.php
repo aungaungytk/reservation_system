@@ -55,19 +55,21 @@ class CarReservationController extends BaseController
             if ($validateReservation->fails()) {
                 return $this->sendError($validateReservation->errors(), "Validation Error", 405);
             }
-
+            if ($request['no_of_traveller'] <= 0) {
+                return $this->sendError(['capacityError' => 'Passengers count must be greater than 0'], "Validation Error", 405);
+            }
             $reservation = $this->carReservationService->store($request->all());
 
-            if ($reservation == "overlap") {
+            if ($reservation === "overlap") {
                 return $this->sendError(['overlap' => 'Reservation already exists within that time!'], "Validation Error", 405);
             }
-            if ($reservation == "errorDate") {
+            if ($reservation === "errorDate") {
                 return $this->sendError(['errorDate' => 'Please select the time greater than current date time!'], "Validation Error", 405);
             }
-            if ($reservation == "endTimeError") {
+            if ($reservation === "endTimeError") {
                 return $this->sendError(['endTimeError' => 'The start time must be less than end time!'], "Validation Error", 405);
             }
-            if ($reservation == "capacityError") {
+            if ($reservation === "capacityError") {
                 return $this->sendError(['capacityError' => 'Your passenger count is greater than the car capacity!'], "Validation Error", 405);
             }
             return $this->sendResponse($reservation, 'Created  Reservation successfully.');

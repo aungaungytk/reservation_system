@@ -1,5 +1,4 @@
 import React from 'react';
-import { roomReservationData } from '../../page/dashboard/admin-dashboard';
 
 
 interface CardProps {

@@ -5,12 +5,16 @@ import { DarkModeContext } from "../../context/darkModeContext";
 import { useAppSelector } from "../../redux/features/Hook";
 import axios from "axios";
 import { Paper, TableContainer } from "@mui/material";
-import { TimeFormatConverter } from "../room/RoomReservation";
+import {
+  TimeFormatConverter,
+  formattedTime,
+  getCurrentDate,
+  getFormattedDate,
+} from "../room/RoomReservation";
 import { useCarReserveDataQuery } from "../api/reservationApi";
 import ReactLoading from "react-loading";
 
- interface DataCarInterface {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface DataCarInterface {
   car: any;
   id: number;
   date: string;
@@ -20,7 +24,6 @@ import ReactLoading from "react-loading";
   destination: string;
   no_of_traveller: number;
   status: number | boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   user: { id: number; name: string; team: any };
   team: string;
   remark: string;
@@ -33,11 +36,10 @@ function AdminCarRequest(): JSX.Element {
   const authRedux = useAppSelector((state) => state.auth);
   const [car, setCar] = useState<DataCarInterface[]>([]);
   const { data: carDataReserveQuery, isFetching: isCarReserveFetching } =
-  useCarReserveDataQuery();
+    useCarReserveDataQuery();
   useEffect(() => {
     if (carDataReserveQuery) {
       setCar(carDataReserveQuery.data);
-      // setIsUpdated(true);
     }
   }, [carDataReserveQuery]);
   const handleStatusChange = (
@@ -131,6 +133,11 @@ function AdminCarRequest(): JSX.Element {
         <Switch
           checked={Boolean(row.status)}
           onChange={(event) => handleStatusChange(event, row)}
+          disabled={
+            (new Date(row.date) <= new Date() &&
+              row.start_time.toString() < formattedTime) ||
+            getCurrentDate() > getFormattedDate(new Date(row.date))
+          }
         />
       ),
     },
@@ -138,41 +145,40 @@ function AdminCarRequest(): JSX.Element {
 
   return (
     <>
-    {isCarReserveFetching ? (
-      <div style={{ display: "flex", justifyContent: "center" }}>
-      <ReactLoading
-        color={"blue"}
-        type={"spin"}
-        height={"80px"}
-        width={"80px"}
-      />
-    </div>
-    ): (
-      <TableContainer component={Paper} style={{ maxWidth: 1300 }}>
-      <DataTable
-        columns={columns}
-        className={darkMode ? "darkTable" : ""}
-        data={car}
-        theme="solarized"
-        pagination
-        customStyles={{
-          table: {
-            style: {
-              backgroundColor: "#000",
-            },
-          },
-          headRow: {
-            style: {
-              backgroundColor: "#e0e2e7",
-              color: "#000",
-            },
-          },
-        }}
-      />
-    </TableContainer>
-    )}
+      {isCarReserveFetching ? (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <ReactLoading
+            color={"blue"}
+            type={"spin"}
+            height={"80px"}
+            width={"80px"}
+          />
+        </div>
+      ) : (
+        <TableContainer component={Paper} style={{ maxWidth: 1300 }}>
+          <DataTable
+            columns={columns}
+            className={darkMode ? "darkTable" : ""}
+            data={car}
+            theme="solarized"
+            pagination
+            customStyles={{
+              table: {
+                style: {
+                  backgroundColor: "#000",
+                },
+              },
+              headRow: {
+                style: {
+                  backgroundColor: "#e0e2e7",
+                  color: "#000",
+                },
+              },
+            }}
+          />
+        </TableContainer>
+      )}
     </>
-    
   );
 }
 

@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
-// import { QueryClient, QueryClientProvider} from 'react-query'
 import "./style/index.scss";
 import { DarkModeContextProvider } from "./context/darkModeContext";
 import { BrowserRouter as Router } from "react-router-dom";

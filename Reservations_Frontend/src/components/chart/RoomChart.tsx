@@ -75,7 +75,6 @@ const RoomChart: React.FC<ChartDataProp> = ({ chartData, monthLabels }) => {
         });
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chartData]);
 
   return <canvas ref={chartRef} />;

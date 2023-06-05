@@ -1,4 +1,4 @@
-import Navbar from "../../components/navbar/navbar";
+import Navbar from "../../components/navbar/Navbar";
 import PersonalProfile from "../../components/profile/profile";
 import { Sidebar } from "../../components/sidebar/AdminSidebar";
 

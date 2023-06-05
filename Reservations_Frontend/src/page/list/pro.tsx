@@ -1,7 +1,7 @@
 
 import { useContext } from "react";
 import ProUser from "../../components/User/proUser";
-import Navbar from "../../components/navbar/navbar";
+import Navbar from "../../components/navbar/Navbar";
 import { Sidebar } from "../../components/sidebar/AdminSidebar";
 import { DarkModeContext } from "../../context/darkModeContext";
 

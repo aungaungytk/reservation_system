@@ -1,5 +1,5 @@
 
-import Navbar from "../../components/navbar/navbar";
+import Navbar from "../../components/navbar/Navbar";
 import TeamReport from "../../components/report/teamReport";
 import { Sidebar } from "../../components/sidebar/AdminSidebar";
 

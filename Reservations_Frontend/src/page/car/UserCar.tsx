@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import TableCar from "../../components/car/tableCar";
-import Navbar from "../../components/navbar/navbar";
+import Navbar from "../../components/navbar/Navbar";
 import { Sidebar } from "../../components/sidebar/UserSidbar";
 import CloseIcon from "@mui/icons-material/Close";
 import Alert from "@mui/material/Alert";

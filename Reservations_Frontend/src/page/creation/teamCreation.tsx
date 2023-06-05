@@ -1,5 +1,5 @@
 import Team from "../../components/create/team";
-import Navbar from "../../components/navbar/navbar";
+import Navbar from "../../components/navbar/Navbar";
 import { Sidebar } from "../../components/sidebar/AdminSidebar";
 
 export const TeamCreation  = () => {

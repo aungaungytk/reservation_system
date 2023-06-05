@@ -40,7 +40,6 @@ const CarDataTable = () => {
       setCarData(response.data);
       setRefresh(false);
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh]);
 
   const fetchCarList = () => {
@@ -80,6 +79,7 @@ const CarDataTable = () => {
         <>
           <div style={{ display: "flex" }}>
             <DriveFileRenameOutlineTwoToneIcon
+              sx={{ cursor:"pointer" }}
               color="success"
               fontSize="large"
               onClick={(e: any) => {
@@ -90,7 +90,7 @@ const CarDataTable = () => {
             <DeleteForeverIcon
               fontSize="large"
               color="error"
-              sx={{ marginLeft: "5px" }}
+              sx={{ marginLeft: "5px", cursor:"pointer" }}
               onClick={(e: any) => {
                 e.preventDefault();
                 handleDelete(row.id);

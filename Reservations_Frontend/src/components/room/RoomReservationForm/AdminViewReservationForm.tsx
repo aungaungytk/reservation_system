@@ -1,4 +1,4 @@
-import Navbar from "../../navbar/navbar";
+import Navbar from "../../navbar/Navbar";
 import { Sidebar } from "../../sidebar/AdminSidebar";
 import RoomReservationForm from "./RoomReservationForm";
 

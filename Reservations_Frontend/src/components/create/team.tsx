@@ -143,10 +143,6 @@ function Team(): JSX.Element {
 
   const columns: TableColumn<DataRow>[] = [
     {
-      name: "Team_id",
-      selector: (row: DataRow) => row.id,
-    },
-    {
       name: "Team_Name",
       selector: (row: DataRow) => row.name,
     },
@@ -156,6 +152,7 @@ function Team(): JSX.Element {
         <>
           <div style={{ display: "flex" }}>
             <DriveFileRenameOutlineTwoToneIcon
+              sx={{ cursor:"pointer" }}
               color="success"
               fontSize="large"
               onClick={(e: any) => {
@@ -167,7 +164,7 @@ function Team(): JSX.Element {
             <DeleteForeverIcon
               fontSize="large"
               color="error"
-              sx={{ marginLeft: "5px" }}
+              sx={{ marginLeft: "5px", cursor:"pointer" }}
               onClick={(e: any) => {
                 e.preventDefault();
                 handleDelete(row.id);

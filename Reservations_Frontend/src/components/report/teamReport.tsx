@@ -30,10 +30,6 @@ function TeamReport(): JSX.Element {
   const columns: TableColumn<DataRow>[] = useMemo(
     () => [
       {
-        name: "No",
-        selector: (row: DataRow) => row.id,
-      },
-      {
         name: "Team_Name",
         selector: (row: DataRow) => row.team.name,
       },

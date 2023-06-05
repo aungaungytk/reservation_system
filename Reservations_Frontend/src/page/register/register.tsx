@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import CustomPhoneInput from "react-phone-input-2";
+import React, { ChangeEvent, useEffect, useState } from "react";
 
 import "react-phone-input-2/lib/style.css";
 import { Link } from "react-router-dom";
@@ -38,7 +37,6 @@ const Register: React.FC = () => {
   const [employeeError, setEmployeeError] = useState("");
   const [phoneError, setPhoneError] = useState("");
   const [cPasswordError, setcPasswordError] = useState("");
- 
 
   const [teamList, setTeamList] = useState<[Team]>([
     {
@@ -67,6 +65,7 @@ const Register: React.FC = () => {
         password_confirmation: cfmPassword,
       })
       .then(function (response) {
+        //console.log(response);
 
         if (response.status == 200) {
           setUserName("");
@@ -134,6 +133,11 @@ const Register: React.FC = () => {
     });
   };
 
+  const handlePhoneNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    setPhone(inputValue);
+  };
+
   return (
     <div className="register">
       <div className="register_wrapper">
@@ -180,14 +184,16 @@ const Register: React.FC = () => {
             {employeeError && (
               <div className="errorMessage">{employeeError}</div>
             )}
-
             <div className="phone-group">
-              <CustomPhoneInput
-                country="mm"
+              <input
+                type="phone"
+                id="phone"
                 value={phone}
-                onChange={(phone) => setPhone(phone)}
+                onChange={handlePhoneNumberChange}
+                placeholder="09 XXXXXXXXX"
               />
             </div>
+
             {phoneError && <div className="errorMessage">{phoneError}</div>}
             <div className="team-group">
               {teamList === null ? (

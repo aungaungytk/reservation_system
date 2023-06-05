@@ -7,8 +7,6 @@ import ReactLoading from "react-loading";
 import { TimeFormatConverter } from "../room/RoomReservation";
 import { Paper, TableContainer } from "@mui/material";
 export interface RoomDataInterface {
-  // name:string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   car: any;
   id: number;
   date: string;
@@ -17,7 +15,6 @@ export interface RoomDataInterface {
   end_time: number;
   description: string;
   room: { id: number; name: string };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   user: { id: number; name: string; team: any };
 }
 

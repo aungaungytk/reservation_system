@@ -9,10 +9,10 @@
 </head>
 
 <body>
-    <h2>Reservation Approvement</h2>
-    <p>Hello, {{ $user->name }},</p>
-    <p>Your car reservation is approved</p>
-    <p>Thank you for using our system.</p>
+    <h2>Car Request Approved.</h2>
+    <p>Dear, {{ $user->name }},</p>
+    <p>We are pleased to inform you that your car request has been approved!.</p>
+
     <br>
     <br>
 

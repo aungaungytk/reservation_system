@@ -11,7 +11,9 @@ class CarReservationRepository implements CarReservationRepoInterface
 {
     public function get()
     {
-        return CarReservation::with(['car', 'user'])->get();
+        return CarReservation::with(['car', 'user'])
+        ->orderByDesc('date')
+        ->get();
     }
     public function show($id)
     {

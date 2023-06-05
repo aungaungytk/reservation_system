@@ -151,6 +151,7 @@ function AdminRoomComponent(): JSX.Element {
           <div style={{ display: "flex" }}>
             <DriveFileRenameOutlineTwoToneIcon
               fontSize="large"
+              sx={{ cursor:"pointer" }}
               color="success"
               onClick={(e: any) => {
                 e.preventDefault();
@@ -160,7 +161,7 @@ function AdminRoomComponent(): JSX.Element {
             <DeleteForeverIcon
               fontSize="large"
               color="error"
-              sx={{ marginLeft: "5px" }}
+              sx={{ marginLeft: "5px", cursor:"pointer"  }}
               onClick={(e: any) => {
                 e.preventDefault();
                 handleDelete(row.id);
@@ -197,6 +198,7 @@ function AdminRoomComponent(): JSX.Element {
         .then(() => {
           setNameError("");
           setCapacityError("");
+          window.location.reload();
           setAddOpen(!addOpen);
         })
         .catch((error) => {

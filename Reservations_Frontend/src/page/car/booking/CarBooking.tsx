@@ -2,7 +2,7 @@
 
 import { useNavigate } from "react-router-dom";
 import CarDataTable from "../../../components/car/CarDataTable";
-import Navbar from "../../../components/navbar/navbar";
+import Navbar from "../../../components/navbar/Navbar";
 import { Sidebar } from "../../../components/sidebar/UserSidbar";
 import { Button } from "@mui/material";
 

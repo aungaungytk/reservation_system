@@ -7,7 +7,6 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import axios from "axios";
 import AcePlus from "../../components/img/ACEPlus.png";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getUserData({ email, password }: any) {
   return new Promise((resolve, reject) => {
     axios
@@ -18,7 +17,6 @@ function getUserData({ email, password }: any) {
       .then(function (response: { data: unknown }) {
         resolve(response.data);
       })
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .catch((reason: any) => {
         reject(reason);
       });
@@ -63,7 +61,6 @@ const Login = () => {
       .catch((error) => {
         setStatus("LOGIN");
         setAlert(true);
-        console.log(error);
         if (error.response.data.message.email) {
           setEmailError(error.response.data.message.email[0]);
         }
@@ -88,7 +85,6 @@ const Login = () => {
         navigate("/SuperAdmin-dashboard/home");
     }
   }, []);
-
   return (
     <div className="login">
       <div className="container" id="container">

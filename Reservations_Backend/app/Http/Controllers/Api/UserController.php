@@ -31,7 +31,6 @@ class UserController extends Controller
     public function index()
     {
         try {
-            // $roles = Role::all();
             $user = Auth::user();
             if (!$user->can('user-list')) {
                 return response()->json([
@@ -44,7 +43,6 @@ class UserController extends Controller
                 'status' => 'success',
                 'message' => "user list all",
                 'data' => $data
-                // 'roles' => $roles,
             ], 200);
         } catch (Exception $e) {
             return response()->json([

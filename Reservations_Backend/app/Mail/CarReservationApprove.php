@@ -34,7 +34,7 @@ class CarReservationApprove extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Car Reservation Approve',
+            subject: 'Car Reservation Approvement',
         );
     }
 
@@ -45,7 +45,7 @@ class CarReservationApprove extends Mailable
      */
     public function build()
     {
-        return $this->subject('Welcome to Our Website')->view('car_approved')->with(['user' => $this->user]);
+        return $this->subject('Car Reservation Approvement')->view('car_approved')->with(['user' => $this->user]);
     }
 
     /**

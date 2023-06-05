@@ -1,6 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Switch, Dialog, DialogContent } from "@mui/material";
+import {
+  Button,
+  Switch,
+  Dialog,
+  DialogContent,
+  DialogContentText,
+} from "@mui/material";
 import DataTable, { TableColumn } from "react-data-table-component";
 import { DarkModeContext } from "../../context/darkModeContext";
 import axios from "axios";
@@ -19,7 +25,7 @@ export interface DataRow {
   roles: [{ id: number; name: string }];
   phone: string;
   id: number;
-  role_id?: string;
+  role_id: string;
   status: boolean;
   team_id: string;
 }
@@ -42,15 +48,16 @@ function NormalUser(): JSX.Element {
   const [roleList, setRoleList] = useState<{ id: number; name: string }[]>([]);
   const [teamName, setTeamName] = useState("");
   const [teamList, setTeamList] = useState<{ id: number; name: string }[]>([]);
-  const [isUpdated, setIsUpdated] = useState(false);
+  const [, setIsUpdated] = useState(false);
   const [, setInitialLoading] = useState(false);
   const [permissionError, setPermissionError] = useState("");
+  const [openError, setOpenError] = useState(false);
   const [formValues, setFormValues] = useState<DataRow>({
     team: { id: 0, name: "" },
     employee_id: "",
     name: "",
     email: "",
-    // role_id: "",
+    role_id: "",
     password: "",
     phone: "",
     status: true,
@@ -65,6 +72,7 @@ function NormalUser(): JSX.Element {
     useTeamDataQuery();
   const { data: roleDataQuery, isFetching: isRoleFetching } =
     useRoleDataQuery();
+  const [connectionError, setConnectionError] = useState("");
   useEffect(() => {
     if (userDataQuery && !isUserFetching) {
       setInitialLoading(true);
@@ -87,19 +95,19 @@ function NormalUser(): JSX.Element {
   }, [roleDataQuery, isRoleFetching]);
 
   const handleUpdate = () => {
-    setIsUpdated(true);
     const updatedUser: DataRow = {
       ...formValues,
     };
-    console.log(updatedUser.roles[0].id);
-    console.log(updatedUser.team_id);
+    const updatedUsers = user.map((item) =>
+      item.id === formValues.id ? updatedUser : item
+    );
+    setUser(updatedUsers);
 
     return new Promise<void>((resolve, reject) => {
       axios
         .patch(
           `http://127.0.0.1:8000/api/users/${formValues.id}`,
           {
-            ...updatedUser,
             name: updatedUser.name,
             email: updatedUser.email,
             password: updatedUser.password,
@@ -108,7 +116,6 @@ function NormalUser(): JSX.Element {
             phone: updatedUser.phone,
             employee_id: updatedUser.employee_id,
             role_id: updatedUser.roles[0].id,
-          
           },
           {
             headers: {
@@ -118,9 +125,9 @@ function NormalUser(): JSX.Element {
         )
         .then(() => {
           setOpen(false);
-          window.location.reload();
-
+          setIsUpdated(true);
           resolve();
+          window.location.reload();
         })
         .catch((error) => {
           reject(error);
@@ -186,9 +193,15 @@ function NormalUser(): JSX.Element {
       })
       .catch((error) => {
         console.error("Error updating user status:", error);
+        if (error.response.data.message) {
+          setOpenError(true);
+          setConnectionError("No internet connection!");
+        }
       });
   };
-
+  const handleCloseError = () => {
+    setOpenError(false);
+  };
   const handleFormChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = event.target;
 
@@ -214,18 +227,12 @@ function NormalUser(): JSX.Element {
       ...prevValues,
       [name]: value,
     }));
-    // console.log(name,value);
   };
 
   const handleEdit = (row: DataRow) => {
     setFormValues({ ...row });
-    // console.log(row);
     setOpen(true);
-
   };
-  
-  
-  
 
   const columns: TableColumn<DataRow>[] = [
     {
@@ -294,11 +301,10 @@ function NormalUser(): JSX.Element {
   ];
   const onBackDropClick = () => {
     setOpen(false);
-    setPermissionError("");
   };
   return (
     <>
-      {isUserFetching || isRoleFetching || isTeamFetching  ? (
+      {isUserFetching || isRoleFetching || isTeamFetching ? (
         <div style={{ display: "flex", justifyContent: "center" }}>
           <ReactLoading
             color={"blue"}
@@ -372,6 +378,7 @@ function NormalUser(): JSX.Element {
                         className="option"
                         value={formValues.team_id}
                         onChange={handleFormChange}
+                        // onChange={(e) => setTeamName(e.target.value)}
                       >
                         {teamList.map((team) => (
                           <option key={team.id} value={team.id}>
@@ -402,6 +409,22 @@ function NormalUser(): JSX.Element {
                 </form>
               </div>
             </DialogContent>
+          </Dialog>
+          <Dialog
+            open={openError}
+            onClose={handleCloseError}
+            className="dialog"
+          >
+            <DialogContent>
+              <DialogContentText>{connectionError}</DialogContentText>
+            </DialogContent>
+
+            <Button
+              onClick={handleCloseError}
+              style={{ textAlign: "center", fontSize: "13px" }}
+            >
+              Close
+            </Button>
           </Dialog>
         </>
       )}

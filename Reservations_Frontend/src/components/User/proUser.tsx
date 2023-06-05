@@ -96,7 +96,6 @@ function NormalUser(): JSX.Element {
     const updatedUser: DataRow = {
       ...formValues,
     }
-    // window.location.reload();
 
     return new Promise<void>((resolve, reject) => {
       axios

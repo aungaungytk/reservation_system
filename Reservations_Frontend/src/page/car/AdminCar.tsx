@@ -1,4 +1,4 @@
-import Navbar from "../../components/navbar/navbar";
+import Navbar from "../../components/navbar/Navbar";
 import { Sidebar } from "../../components/sidebar/AdminSidebar";
 import AdminCarRequest from "../../components/car/AdminCar";
 import { useContext } from "react";
